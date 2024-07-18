@@ -67,25 +67,27 @@ app.get('/fetchDealers', async (req, res) => {
 });
 // Express route to fetch Dealers by a particular state
 app.get('/fetchDealers/:state', async (req, res) => {
-app.get('/fetchDealers/:state', async (req, res) => {
-    try {
+  try {
       const documents = await Dealerships.find({ state: req.params.state });
       res.json(documents);
-    } catch (error) {
+  } catch (error) {
       res.status(500).json({ error: 'Error fetching documents' });
-    }
-  });
-  app.get('/fetchDealer/:id', async (req, res) => {
-  try {
+  }
+});
+
+
 app.get('/fetchDealer/:id', async (req, res) => {
-    try {
+  try {
       const documents = await Dealerships.find({ id: req.params.id });
       res.json(documents);
-    } catch (error) {
+  } catch (error) {
       res.status(500).json({ error: 'Error fetching dealers by ID' });
-    }
-  });
-    data = JSON.parse(req.body);
+  }
+});
+
+
+app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
+  data = JSON.parse(req.body);
   const documents = await Reviews.find().sort({ id: -1 });
   let new_id = documents[0].id + 1;
 
